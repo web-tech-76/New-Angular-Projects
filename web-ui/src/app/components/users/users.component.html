@@ -1,0 +1,14 @@
+@for (oneUser of allUsers(); track $index) {
+  <div class="container-sm">
+    <div class="row">
+      <div class="col-2">
+        <div class="card bg-white">
+            <div class="card-body">
+              <p>{{ oneUser.userId }}</p>
+              <p>{{ oneUser.name }}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
