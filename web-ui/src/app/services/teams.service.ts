@@ -1,32 +1,73 @@
-import {Injectable, signal} from "@angular/core";
+import {DestroyRef, inject, Injectable, signal, WritableSignal} from "@angular/core";
 import {Team} from "../model/cricket/teams/team.model";
+import {HttpClient} from "@angular/common/http";
+import {response} from "express";
+import {takeUntil} from "rxjs";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {responseObject} from "../type/responseObject.type";
 
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
-export class TeamsService{
+export class TeamsService {
 
-   teams =signal<Team[]>([]);
-   constructor() {
-     this.teams.set(
-       [
-         new Team("100", "West Indies", "Viv Richards", 15, new Date("2022-11-12")),
-         new Team("200", "India", "Rohit Sharma", 20, new Date("2021-01-10")),
-         new Team("300", "Australia", "Steve Smith", 16, new Date("2023-01-23")),
-         new Team("400", "England", "Joe Root", 12, new Date("2002-07-31")),
-         new Team("500", "South Africa", "Abbie De Williars", 11, new Date("2000-19-18")),
-       ]
-     )
-   }
+  teams = signal<Team[]>([]);
+  http = inject(HttpClient);
+  arrTeams: Team[] = [];
+  destroyRef$ = inject(DestroyRef);
 
-   getTeam(id: string): Team  {
-     const team: Team[] =this.teams()?.filter( (team) =>{
-          return team.teamId == id;
-     });
+  constructor() {
+    this
+      .http
+      .get<responseObject<Team>>("http://localhost:8080/cricket/")
+      .pipe(takeUntilDestroyed(this.destroyRef$))
+      .subscribe((serverResponse: responseObject<Team>) => {
+        for (let team of serverResponse.result) {
+          team.teamId = team._id;
+          this.arrTeams.push(team);
+        }
+        this.teams.set(this.arrTeams);
+      })
+  }
 
-     return team[0];
-   }
+  getAll(): Team[] {
+    let sliced: Team[] = []
+    sliced = this.arrTeams.slice(0, this.arrTeams.length);
+    return sliced;
+  }
 
+  getTeamNames(): {id: string , name : string}[]{
+    let teamNames : {id: string , name : string} [] =[];
+    for(const team of this.arrTeams)
+    {
+      let teamNameObj :{id: string , name : string} ={id:team._id, name:team.teamName};
+      teamNames.push(teamNameObj);
+    }
+    return teamNames;
+
+  }
+
+
+  getTeam(index: number): Team | undefined {
+    let teamAtIndex: Team = new Team("", "", "", "", 0, new Date());
+    let sliced: Team[] = []
+    sliced = this.arrTeams.slice(0, this.arrTeams.length);
+
+    if (sliced.at(index) !== null) {
+      return sliced.at(index);
+    } else {
+      return teamAtIndex;
+    }
+
+  }
+
+
+  getTeamById(id: string): Team[] {
+    let sliced: Team[] = []
+    sliced = this.arrTeams.slice(0, this.arrTeams.length);
+
+    return sliced.filter((team) => team._id == id)
+  }
 
 }

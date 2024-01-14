@@ -3,9 +3,9 @@
     <div class="col">
       <div class="card ">
         <div class="card-header bg-primary bg-opacity-75 text-light">
-          <p>{{ team.teamId }} - {{ team.teamName }}</p>
+          <p>{{ team.teamId}} - {{ team.teamName }}</p>
           <section class="d-block p-2 ">
-              <a class="text-white" [routerLink]="['/Players', team.teamId]" >Players</a>
+            <a class="text-white" [routerLink]="['/Players', team.teamId]">Players</a>
           </section>
         </div>
 
@@ -13,13 +13,13 @@
           <div class="row">
             <div class="col">
               <h6>Captain : </h6>
-              <p>{{ team.captainName }}</p>
+              <p>{{ team.captain }}</p>
             </div>
           </div>
           <h6>Players: </h6>
-          <p>{{ team.noOfPlayers }}</p>
+          <p>{{ team.playersCount }}</p>
           <h6>Created On: </h6>
-          <p>{{ team.teamCreated }}</p>
+          <p>{{ team.createdDate }}</p>
         </div>
       </div>
 

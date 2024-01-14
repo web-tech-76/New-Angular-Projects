@@ -1,21 +1,44 @@
 <div class="container-lg">
-  <div class="row-cols-6">
-    <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 col-sm-offset-1 col-sm-offset-2">
+  <div class="row">
+    <div class="col">
       <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-        <label for="team">Team </label>
-        <input class="mt-2 mb-2  from-group form-control"
-               type="text"
-               name="team"
-               formControlName="team"
-               id="team"
-        >
-        <label for="playerName">Player Name </label>
-        <input class="mt-2 mb-2  from-group form-control"
-               type="text"
-               formControlName="playerName"
-               name="playerName"
-               id="playerName"
-        >
+        <div class="row" g-2>
+          <div class="col-4">
+            <label for="team">Team </label>
+            <select class="form-control form-select"
+                    id="team"
+                    formControlName="team"
+                    (change)="onTeamNameChange($event)">
+              <option disabled selected>Select A Value</option>
+              @for (teamNames of teamNamesValues; track $index) {
+                <option class="form-select" value="{{teamNames.id}}">
+                  {{ teamNames.id }}-{{ teamNames.name }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="row" g-2>
+        <div class="col-2">
+            <p>Player</p>
+            <label for="firstName">First Name</label>
+            <input class="mt-2 mb-2  from-group form-control"
+                   type="text"
+                   formControlName="firstName"
+                   name="firstName"
+                   id="firstName"
+            >
+            <label for="lastName">Last Name</label>
+            <input class="mt-2 mb-2  from-group form-control"
+                   type="text"
+                   formControlName="lastName"
+                   name="lastName"
+                   id="lastName"
+            >
+          </div>
+        </div>
+
+
         <label for="speciality">Speciality </label>
         <select id="speciality" class="form-control form-select"
                 formControlName="speciality">
@@ -33,18 +56,18 @@
                name="age"
                id="age"
         >
-        <label for="dob">DOB: </label>
+        <label for="dob">Birth Date </label>
         <input class="mt-2 mb-2  from-group form-control"
                type="date"
                name="dob"
                formControlName="dob"
                id="dob"
         >
-        <div><p>Gender:</p></div>
+        <div><p>Gender</p></div>
         <select class="form-control form-select"
                 formControlName="gender"
                 (change)="onIsGenderChange($event)">
-          <option disabled selected>Select Gender</option>
+          <option disabled selected>Select A Value</option>
           @for (gender of genders; track $index) {
             <option class="form-select" value="{{gender}}">
               {{ gender }}
@@ -55,7 +78,7 @@
         <select class="form-control form-select"
                 formControlName="isCaptain"
                 (change)="onIsCaptainChange($event)">
-          <option disabled selected>Is Captain</option>
+          <option disabled selected>Select A Value</option>
           @for (isCaptain of captainValues; track $index) {
             <option class="form-select" value="{{isCaptain}}">
               {{ isCaptain }}
@@ -65,6 +88,7 @@
         <div class="row mt-4">
           <div class="col">
             <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-success ms-4" type="reset">Reset</button>
           </div>
         </div>
       </form>

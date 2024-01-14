@@ -7,11 +7,12 @@
 
   <div class="row mt-4">
     <div class="col-2">
-      @for (team of teams(); track $index) {
+      @for (team of teams; track team.teamId ; let idx = $index) {
         <span class="d-block p-2 text-bg-secondary"
-              (click)="onSelectTeam(team.teamId)"
-              style="cursor: pointer">
-            ({{ team.teamId }}) - {{ team.teamName }}
+              style="cursor: pointer"
+              (click)="onTeamSelected(idx)"
+        >
+            {{ idx }} - {{ team.teamName }}
           <hr>
           </span>
       }
@@ -20,7 +21,7 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-
 </div>
+
 
 

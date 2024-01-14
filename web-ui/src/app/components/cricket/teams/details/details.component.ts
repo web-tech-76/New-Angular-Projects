@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   team: Team ;
 
   constructor() {
-    this.team = new Team("", "", "", 0, new Date());
+    this.team = new Team("","","","",0,new Date());
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.paramSubscription = this.activeRoute
       .params.subscribe((params:Params) => {
         this.teamId = params['id'];
-        this.team = this.teamService.getTeam(this.teamId);
+        this.team = this.teamService.getTeamById(this.teamId)[0];
       });
   }
 
