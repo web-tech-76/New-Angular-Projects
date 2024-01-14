@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {TeamsService} from "../../../services/teams.service";
 import {Team} from "../../../model/cricket/teams/team.model";

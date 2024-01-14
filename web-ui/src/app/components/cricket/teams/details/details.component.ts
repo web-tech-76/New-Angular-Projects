@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {Team} from "../../../../model/cricket/teams/team.model";
 import {TeamsService} from "../../../../services/teams.service";
