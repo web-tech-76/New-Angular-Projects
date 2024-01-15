@@ -1,0 +1,97 @@
+<div class="container-lg">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+        <div class="row" g-2>
+          <div class="col-4">
+            <label for="team">Team </label>
+            <select class="form-control form-select"
+                    id="team"
+                    formControlName="team"
+                    (change)="onTeamNameChange($event)">
+              <option disabled selected>Select A Value</option>
+              @for (teamNames of teamNamesValues; track $index) {
+                <option class="form-select" value="{{teamNames.id}}">
+                  {{ teamNames.id }}-{{ teamNames.name }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="row g-2">
+        <div class="col-2">
+            <p>Player</p>
+            <label for="firstName">First Name</label>
+            <input class="mt-2 mb-2  from-group form-control"
+                   type="text"
+                   formControlName="firstName"
+                   name="firstName"
+                   id="firstName"
+            >
+            <label for="lastName">Last Name</label>
+            <input class="mt-2 mb-2  from-group form-control"
+                   type="text"
+                   formControlName="lastName"
+                   name="lastName"
+                   id="lastName"
+            >
+          </div>
+        </div>
+
+
+        <label for="speciality">Speciality </label>
+        <select id="speciality" class="form-control form-select"
+                formControlName="speciality">
+          <option disabled selected>Speciality</option>
+          @for (speciality of specialities; track $index) {
+            <option class="form-select" value="{{speciality}}">
+              {{ speciality }}
+            </option>
+          }
+        </select>
+        <label for="age">Age </label>
+        <input class="mt-2 mb-2 from-group form-control"
+               type="number"
+               formControlName="age"
+               name="age"
+               id="age"
+        >
+        <label for="dob">Birth Date </label>
+        <input class="mt-2 mb-2  from-group form-control"
+               type="date"
+               name="dob"
+               formControlName="dob"
+               id="dob"
+        >
+        <div><p>Gender</p></div>
+        <select class="form-control form-select"
+                formControlName="gender"
+                (change)="onIsGenderChange($event)">
+          <option disabled selected>Select A Value</option>
+          @for (gender of genders; track $index) {
+            <option class="form-select" value="{{gender}}">
+              {{ gender }}
+            </option>
+          }
+        </select>
+        <div><p>Is Captain ?</p></div>
+        <select class="form-control form-select"
+                formControlName="isCaptain"
+                (change)="onIsCaptainChange($event)">
+          <option disabled selected>Select A Value</option>
+          @for (isCaptain of captainValues; track $index) {
+            <option class="form-select" value="{{isCaptain}}">
+              {{ isCaptain }}
+            </option>
+          }
+        </select>
+        <div class="row mt-4">
+          <div class="col">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-success ms-4" type="reset">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

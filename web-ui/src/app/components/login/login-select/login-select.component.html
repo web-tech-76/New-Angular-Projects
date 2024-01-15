@@ -1,0 +1,17 @@
+@if (!isNewUser) {
+  <div class="row">
+    @for (type of selectTypes; track $index) {
+      <div class="col-sm-2 form-check">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input"
+                 type="radio"
+                 name="selectTypes"
+                 id="{{type}}"
+                 (click)="onClickRadio(type)"
+                 [value]="type" checked>
+          <label class="form-check-label" for="{{type}}">{{ type }}</label>
+        </div>
+      </div>
+    }
+  </div>
+}
