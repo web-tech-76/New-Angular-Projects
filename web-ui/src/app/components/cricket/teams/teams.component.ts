@@ -17,7 +17,7 @@ export class TeamsComponent implements OnInit {
   router = inject(Router);
   teamsService = inject(TeamsService);
   activeRoute = inject(ActivatedRoute);
-  teams : Team [] = [] ;//= this.teamsService.teams;
+  teams: Team [] = [];//= this.teamsService.teams;
 
   constructor() {
     this.teams = this.teamsService.getAll();
