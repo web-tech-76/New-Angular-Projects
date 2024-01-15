@@ -9,7 +9,6 @@ import {DetailsComponent} from "./components/cricket/teams/details/details.compo
 import {PlayersComponent} from "./components/cricket/teams/players/players.component";
 import {EditTeamComponent} from "./components/cricket/teams/edit-team/edit-team.component";
 import {MatchesComponent} from "./components/cricket/matches/matches.component";
-import {BankComponent} from "./components/bank/bank.component";
 import {ExamComponent} from "./components/exam/exam.component";
 import {TicketBookingComponent} from "./components/ticket-booking/ticket-booking.component";
 
@@ -49,9 +48,6 @@ export const routes: Routes = [
   },
   {
     path: "Matches", component: MatchesComponent, title: "matches"
-  },
-  {
-    path: "Bank", component: BankComponent, title: "Bank"
   },
   {
     path: "Exam", component: ExamComponent, title: "Exam"

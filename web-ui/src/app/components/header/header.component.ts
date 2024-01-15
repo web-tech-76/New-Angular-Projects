@@ -14,6 +14,6 @@ import {DropdownDirective} from "../../directives/dropdown.directive";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  mainHeaderValues  = ["Home","Users","Bank","Tickets","Exam"]
+  mainHeaderValues  = ["Home","Users","Tickets","Exam"]
   userHeaderValues  = ['']
 }
